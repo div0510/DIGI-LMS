@@ -8,7 +8,6 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-        unique: true,
         // encrypted
     },
     passwordCopy: {
@@ -43,4 +42,4 @@ const userSchema = new Schema({
     }
 })
 
-module.exports = model('users',userSchema);
+export default model('users',userSchema);

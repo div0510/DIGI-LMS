@@ -45,3 +45,5 @@ const trainerModel = new Schema ({
         type: String, 
     }
 })
+
+module.exports = model('trainer',trainerModel);
