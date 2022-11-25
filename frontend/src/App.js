@@ -9,6 +9,8 @@ import User from './components/user';
 import AdminProfile from './components/admin/Profile';
 import UserProfile from './components/user/Profile';
 import Home from './components/main/Home';
+import Register from './components/user/Register';
+import UserLogin from './components/user/Login';
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
           
           <Route element={<User />} path="user">
             <Route path="pofile" element={<UserProfile />} />
+            <Route path="register" element={<Register />} />
+            <Route path="login" element={<UserLogin/>} />
           
           </Route>
 

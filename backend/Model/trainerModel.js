@@ -1,4 +1,4 @@
-const { Schema, model} = ('../connection.js');
+const { Schema, model} = require('../connection.js');
 const trainerModel = new Schema ({
     username: {
         type: String,
@@ -38,7 +38,6 @@ const trainerModel = new Schema ({
     },
     createdAt: {
         type: Date,
-        default: Date.now,
         required: true,
     },
     avatar: {
@@ -46,4 +45,4 @@ const trainerModel = new Schema ({
     }
 })
 
-module.exports = model('trainer',trainerModel);
+export default model('trainer',trainerModel);
