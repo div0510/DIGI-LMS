@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Link, Routes, Navigate } from 'react-router-dom';
 import Main from './components/main';
 import Login from './components/main/Login';
 import Signup from './components/main/Signup';
@@ -8,6 +8,9 @@ import Admin from './components/admin';
 import User from './components/user';
 import AdminProfile from './components/admin/Profile';
 import UserProfile from './components/user/Profile';
+import Home from './components/main/Home';
+import Register from './components/user/Register';
+import UserLogin from './components/user/Login';
 
 function App() {
   return (
@@ -15,9 +18,11 @@ function App() {
       <BrowserRouter>
         <Routes>
 
+          <Route element={<Navigate to="/main/home" />} path="/" />
           <Route element={<Main />} path="main">
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
+            <Route path="home" element={<Home />} />
           </Route>
           
           <Route element={<Admin />} path="admin">
@@ -27,6 +32,8 @@ function App() {
           
           <Route element={<User />} path="user">
             <Route path="pofile" element={<UserProfile />} />
+            <Route path="register" element={<Register />} />
+            <Route path="login" element={<UserLogin/>} />
           
           </Route>
 
