@@ -4,8 +4,11 @@ import Register from './Register';
 
 const User = () => {
   return (
-    // <Login/>
-    <Register/>
+    <>
+
+      <Login />
+      <Register />
+    </>
   )
 }
 

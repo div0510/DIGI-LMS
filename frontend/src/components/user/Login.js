@@ -4,11 +4,11 @@ import { MDBInput } from 'mdb-react-ui-kit';
 
 const Login = () => {
 
-    const loginSubmit = async (registerData) => {
-        console.log(registerData);
+    const loginSubmit = async (loginData) => {
+        console.log(loginData);
         const response = await fetch('http://localhost:5000/user/login', {
             method: 'post',
-            body: JSON.stringify(registerData),
+            body: JSON.stringify(loginData),
             headers: {
                 'Content-Type': 'application/json'
             }
