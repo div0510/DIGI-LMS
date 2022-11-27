@@ -6,8 +6,8 @@ import Signup from './Signup';
 const Main = () => {
   return (
     <div>
-        <Header />
-        <Outlet />
+        {/* <Header /> */}
+        {/* <Outlet /> */}
         <Signup/>
     </div>
   )
