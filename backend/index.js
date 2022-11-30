@@ -4,7 +4,7 @@ const port = 5000;
 const cors = require('cors');
 const userRouter = require('./Routers/userRouter');
 const trainerRouter = require('./Routers/trainerRouter')
-
+const courseRouter = require('./Routers/courseRouter');
 
 
 //Middle Ware
@@ -15,6 +15,7 @@ app.use(cors({
 
 app.use('/user',userRouter);
 app.use('/trainer',trainerRouter);
+app.use('/course',courseRouter);
 
 app.get('/',(req,res)=>{
     res.send('Request at blank');

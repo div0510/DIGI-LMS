@@ -1,4 +1,4 @@
-const {Schema, model} = require('../connection.js');
+const {Schema, model ,Types} = require('../connection.js');
 const courseModel = new Schema({
     title:{
         type: String,
@@ -20,13 +20,15 @@ const courseModel = new Schema({
         required: true,
     },
     trainer: {
-        type: ObjectId,
+        type: Types.ObjectId,
+        ref:'trainer',
         required: true,
     },
     category:{
         type: Array,
         required: true,
+
     }
 })
 
-export default model('course',courseModel);
+module.exports =  model('course',courseModel);
