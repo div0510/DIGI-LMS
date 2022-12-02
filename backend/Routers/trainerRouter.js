@@ -16,7 +16,7 @@ router.post('/register',(req,res)=>{
     });
 })
 
-route.post('/login',(req,res)=>{
+router.post('/login',(req,res)=>{
     console.log(req.body);
     trainerModel.findOne()
     .then((result) => {

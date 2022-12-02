@@ -38,7 +38,7 @@ const trainerSchema = new Schema ({
     },
     createdAt: {
         type: Date,
-        required: true,
+        required: false,
     },
     avatar: {
         type: String, 
