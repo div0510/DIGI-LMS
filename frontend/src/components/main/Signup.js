@@ -11,11 +11,23 @@ import {
   MDBCardText,
   MDBContainer
 } from 'mdb-react-ui-kit';
+import app_config from '../../config';
 
 const Signup = () => {
 
-  const signUpSubmit = (signUpData) => {
+  const url = app_config.api_url;
+
+  const signUpSubmit = async (signUpData) => {
     console.log(signUpData);
+    const response = await fetch(url + 'trainer/addcourse', {
+      method: 'post',
+      body: JSON.stringify(signUpData),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    console.log(response.status);
+
   }
 
 
@@ -41,7 +53,7 @@ const Signup = () => {
                       <MDBCardText className="text-start px-3 fs-3 m-0 fw-bold">is Admin ?</MDBCardText>
                       <MDBCard className='d-flex align-items-center fw-bolder  px-4'>
                         <MDBRadio name='isAdmin' value={values.isAdmin = 'true'} onChange={handleChange} aria-label='YES' inline label='YES' />
-                        <MDBRadio name='isAdmin' value={values.isAdmin = 'false'} onChange={handleChange} aria-label='NO' inline label='NO'  />
+                        <MDBRadio name='isAdmin' value={values.isAdmin = 'false'} onChange={handleChange} aria-label='NO' inline label='NO' />
                       </MDBCard>
                     </MDBContainer>
 

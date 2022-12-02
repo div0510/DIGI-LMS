@@ -1,10 +1,11 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { MDBInput } from 'mdb-react-ui-kit';
+import Swal from "sweetalert2";
 
 const Login = () => {
 
-    const loginSubmit = async (loginData) => {
+    const loginSubmit = async (loginData , {resetForm}) => {
         console.log(loginData);
         const response = await fetch('http://localhost:5000/user/login', {
             method: 'post',
@@ -13,11 +14,38 @@ const Login = () => {
                 'Content-Type': 'application/json'
             }
         })
+        
         console.log(response.status);
         if (response.status === 200) {
+            resetForm();
+            const userData = await response.json();
+            sessionStorage.setItem('user', JSON.stringify(userData));
             console.log('Login Successfull');
-        } else {
+            Swal.fire(
+                {
+                    title: "Success",
+                    icon: "success",
+                    text: "Log In Successful",
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: 'green'
+                }
+            )
+            navigate('/home')
+        } else if (response.status === 401) {
+            Swal.fire(
+                {
+                    title: "Error",
+                    icon: "error",
+                    text: "Someone Anonymous",
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: 'red',
+                    footer: `<a href='../userregister'>Want to register?</a>`
+
+                }
+            )
             console.log('some error occurred');
+        } else {
+            console.log("login Error");
         }
     }
 

@@ -1,12 +1,18 @@
 import React from 'react';
 import { Formik } from 'formik';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
+import app_config from '../../config';
+import Swal from "sweetalert2";
 
 const Register = () => {
+    const navigate = useNavigate();
 
-    const registerSubmit = async (registerData) => {
+    const url = app_config.api_url;
+
+    const registerSubmit = async (registerData, { resetForm }) => {
         console.log(registerData);
-        const response = await fetch('http://localhost:5000/user/register', {
+        const response = await fetch(url + '/user/register', {
             method: 'post',
             body: JSON.stringify(registerData),
             headers: {
@@ -15,10 +21,28 @@ const Register = () => {
         })
         console.log(response.status);
         if (response.status === 200) {
+            Swal.fire(
+                {
+                    title: "Success",
+                    icon: "success",
+                    text: "Register Successful",
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: 'green'
+                }
+            )
+            navigate('/login');
             console.log("your are registered");
         } else {
+            Swal.fire({
+                title: "Error",
+                icon: "error",
+                text: "Register Failed",
+                confirmButtonText: 'OK',
+                confirmButtonColor: 'red'
+            })
             console.log('Some error occurred');
         }
+        resetForm();
     }
 
 
