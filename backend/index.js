@@ -5,6 +5,7 @@ const cors = require('cors');
 const userRouter = require('./Routers/userRouter');
 const trainerRouter = require('./Routers/trainerRouter')
 const courseRouter = require('./Routers/courseRouter');
+const utilRouter = require('./Routers/util');
 
 
 //Middle Ware
@@ -16,6 +17,9 @@ app.use(cors({
 app.use('/user',userRouter);
 app.use('/trainer',trainerRouter);
 app.use('/course',courseRouter);
+app.use('/util',utilRouter);
+
+app.use(express.static('./static/uploads'))
 
 app.get('/',(req,res)=>{
     res.send('Request at blank');

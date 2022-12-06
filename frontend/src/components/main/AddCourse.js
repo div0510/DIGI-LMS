@@ -1,26 +1,3 @@
-// import React from 'react';
-// import { MDBInput, MDBTextArea} from 'mdb-react-ui-kit';
-// import { Autocomplete } from '@mui/material';
-
-// const AddCourse = () => {
-//     return (
-//         <>
-//             <div className="container ">
-//                 <div  className="card w-50 p-3 square border border-dark" >
-//                     <MDBInput  label='title' />
-//                     <MDBTextArea label='Description' id='description' rows={4} />
-//                     <MDBInput/>
-//                     <MDBInput/>
-//                     <MDBInput/>
-//                     <MDBInput/>
-//                 </div>
-//             </div>
-//         </>
-//     )
-// }
-
-// export default AddCourse
-
 import { ExpandMore } from "@mui/icons-material";
 import { Assignment } from "@mui/icons-material";
 import { PersonPin } from "@mui/icons-material";
@@ -57,28 +34,29 @@ const AddCourse = () => {
     const answerTypes = ["smalltext", "longtext", "checkbox", "radio", "file"];
 
     const { formid } = useParams();
-    console.log(formid);
+    // console.log(formid);
 
     const [tempForm, setTempForm] = useState({});
 
-    const [value, setValue] = React.useState(0);
-    const [formData, setFormData] = React.useState({
+    const [value, setValue] = useState(0);
+    const [formData, setFormData] = useState({
         sections: [
             {
                 name: "Untitled Section",
                 description: "",
-                questions: [
+                lectures: [
                     {
                         name: "",
-                        marks: "",
-                        answertype: "shorttext",
+                        description: "",
+                        completed: false,
+                        duration: 0
                     },
                 ],
             },
         ],
     });
 
-    const [dataReady, setDataReady] = React.useState(false);
+    const [dataReady, setDataReady] = useState(false);
 
     const [imgPath, setImgPath] = useState("");
     const [avatar, setAvatar] = useState("");
@@ -98,7 +76,6 @@ const AddCourse = () => {
         trainer: currentUser._id,
         created: new Date(),
         duration: 0,
-        reviews: Array,
     };
 
     const onFormSubmit = (formdata) => {
@@ -132,21 +109,15 @@ const AddCourse = () => {
         const newSection = {
             name: "Untitled Section",
             description: "Section Description",
-            questions: [
+            lectures: [
                 {
-                    name: "question 1",
-                    description: "question 1 Description",
-                    content: "",
-                    resources: [],
+                    name: "",
+                    description: "",
+                    completed: false,
+                    duration: 0
                 },
             ],
         };
-        <div class="form-outline">
-            <input type="text" id="form12" class="form-control" />
-            <label class="form-label" for="form12">
-                question 1
-            </label>
-        </div>;
 
         const newData = update(formData, {
             sections: {
@@ -157,16 +128,16 @@ const AddCourse = () => {
         setFormData(newData);
     };
 
-    const addNewQuestion = (sect_index) => {
-        const newQuestion = {
-            name: "Untitled question",
-            description: "question Description",
-            content: "",
-            resources: [],
+    const addNewLecture = (sect_index) => {
+        const newLecture = {
+            name: "",
+            description: "",
+            completed: false,
+            duration: 0
         };
 
         const sections = {};
-        sections[sect_index] = { questions: { $push: [newQuestion] } };
+        sections[sect_index] = { lectures: { $push: [newLecture] } };
 
         const newData = update(formData, {
             sections: sections,
@@ -175,23 +146,23 @@ const AddCourse = () => {
         setFormData(newData);
     };
 
-    const handleRename = (prop, val, sect_i, ques_i) => {
-        const sections = {};
-        const questions = {};
+    const handleRename = (prop, val, sect_i, lect_i) => {
+        const sections_tmp = {};
+        const lectures_tmp = {};
         if (prop == "lect_name") {
-            questions[ques_i] = { name: { $set: val } };
-            sections[sect_i] = { questions: questions };
+            lectures_tmp[lect_i] = { name: { $set: val } };
+            sections_tmp[sect_i] = { lectures: lectures_tmp };
         } else if (prop == "lect_desc") {
-            questions[ques_i] = { description: { $set: val } };
-            sections[sect_i] = { questions: questions };
+            lectures_tmp[lect_i] = { description: { $set: val } };
+            sections_tmp[sect_i] = { lectures: lectures_tmp };
         } else if (prop == "sect_name") {
-            sections[sect_i] = { name: { $set: val } };
+            sections_tmp[sect_i] = { name: { $set: val } };
         } else if (prop == "sect_desc") {
-            sections[sect_i] = { description: { $set: val } };
+            sections_tmp[sect_i] = { description: { $set: val } };
         }
 
         const newData = update(formData, {
-            sections: sections,
+            sections: sections_tmp,
         });
 
         setFormData(newData);
@@ -281,50 +252,35 @@ const AddCourse = () => {
                                     handleRename("sect_desc", e.target.value, sect_i, 0)
                                 }
                             ></InputBase>
-                            {section.questions.map((question, ques_i) => (
-                                <Accordion key={ques_i}>
+                            {section.lectures.map((lecture, lect_i) => (
+                                <Accordion key={lect_i}>
                                     <AccordionSummary expandIcon={<ExpandMore />}>
                                         <h4>
-                                            question {`${ques_i + 1}: `}
+                                            Lecture {`${lect_i + 1}: `}
                                             <InputBase
-                                                value={question.name}
+                                                value={lecture.name}
                                                 onChange={(e) =>
                                                     handleRename(
-                                                        "ques_name",
+                                                        "lect_name",
                                                         e.target.value,
                                                         sect_i,
-                                                        ques_i
+                                                        lect_i
                                                     )
                                                 }
                                             ></InputBase>
                                         </h4>
                                     </AccordionSummary>
                                     <AccordionDetails>
-                                        <FormControl fullWidth>
-                                            <InputLabel id="sel-answer-type">
-                                                Select Answer Type
-                                            </InputLabel>
-                                            <Select
-                                                labelId="sel-answer-type"
-                                                id="sel-answer"
-                                                value={question.answertype}
-                                                label="Select Answer Type"
-                                            // onChange={handleChange}
-                                            >
-                                                {answerTypes.map((type) => (
-                                                    <MenuItem value={type}>{type}</MenuItem>
-                                                ))}
-                                            </Select>
-                                        </FormControl>
+                                        <label>Upload Files</label>
+                                        <input className="form-control" type="file" />
                                     </AccordionDetails>
 
-                                    <AccordionActions></AccordionActions>
                                 </Accordion>
                             ))}
                             {/* <Button onClick={(e) => addNewQuestion(sect_i)}>
               Add New question
             </Button> */}
-                            <Button onClick={(e) => addNewQuestion(sect_i)} variant="outlined">
+                            <Button onClick={(e) => addNewLecture(sect_i)} variant="outlined">
                                 ADD NEW QUESTION
                             </Button>
                         </div></div>
@@ -339,13 +295,6 @@ const AddCourse = () => {
         </Button> */}
             </div>
         );
-    };
-
-    const userForm = {
-        title: "",
-        description: "",
-        createdBy: currentUser._id,
-        createdAt: new Date(),
     };
 
     // 2. Create a function for form submission
@@ -391,7 +340,7 @@ const AddCourse = () => {
             <TabPanel value={value} index={0}>
                 <div className="basic-details">
                     <Formik
-                        initialValues={userForm}
+                        initialValues={courseForm}
                         onSubmit={userSubmit}
                     // validationSchema={formSchema}
                     >
@@ -433,18 +382,13 @@ const AddCourse = () => {
 
                 <div className="form-customizer">{renderCourse()}</div>
 
-                <Formik initialValues={courseForm} onSubmit={onFormSubmit}>
-                    {({ values, handleChange, handleSubmit, isSubmitting }) => (
-                        <form onSubmit={handleSubmit}></form>
-                    )}
-                </Formik>
-
             </TabPanel>
 
             <TabPanel value={value} index={1}>
                 Item Two
             </TabPanel>
             {/* </div> */}
+            <button onClick={e => console.log(formData)}>check</button>
         </div>
     );
 };
@@ -466,6 +410,7 @@ function TabPanel(props) {
                     {children}
                 </Paper>
             )}
+            
         </div>
     );
 }
