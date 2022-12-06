@@ -17,12 +17,12 @@ const Main = () => {
         {/* <Header /> */}
         {/* <Outlet /> */}
         {/* <AddCourse/> */}
-        <Home/>
+        {/* <Home/>
         <Homeimg/>
         <Home3rdsection/>
         <Home4thsection/>
         <Home5thsection/>
-        <Homefooter/>
+        <Homefooter/> */}
         {/* <Login/> */}
         {/* <Signup/> */}
     </div>

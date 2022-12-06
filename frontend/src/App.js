@@ -16,6 +16,7 @@ import Homeimg from './components/main/Homeimg';
 import Home4thsection from './components/main/Home4thsection';
 import Home5thsection from './components/main/Home5thsection';
 import Homefooter from './components/main/Homefooter';
+import UserDashboard from './components/user/UserDashboard';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
             <Route path="pofile" element={<UserProfile />} />
             <Route path="register" element={<Register />} />
             <Route path="login" element={<UserLogin/>} />
+            <Route path="UserDashboard" element={<UserDashboard/>} />
           
           </Route>
 
