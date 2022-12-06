@@ -7,13 +7,9 @@ import Login from './Login';
 
 const Main = () => {
   return (
-    <div>
-        {/* <Header /> */}
+    <>
         <Outlet />
-        {/* <AddCourse/> */}
-        {/* <Login/> */}
-        {/* <Signup/> */}
-    </div>
+    </>
   )
 }
 

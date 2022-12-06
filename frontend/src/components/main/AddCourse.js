@@ -83,7 +83,7 @@ const AddCourse = () => {
     const [imgPath, setImgPath] = useState("");
     const [avatar, setAvatar] = useState("");
     const [currentUser, setCurrentUser] = useState(
-        JSON.parse(sessionStorage.getItem("user"))
+        JSON.parse(sessionStorage.getItem("trainer"))
     );
 
     const courseForm = {

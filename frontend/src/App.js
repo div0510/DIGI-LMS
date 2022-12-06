@@ -12,6 +12,7 @@ import Home from './components/main/Home';
 import Register from './components/user/Register';
 import UserLogin from './components/user/Login';
 import AddCourse from './components/main/AddCourse';
+import TrainerDashboard from './components/main/TrainerDashboard';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="signup" element={<Signup />} />
             <Route path="home" element={<Home />} />
             <Route path="addcourse" element={<AddCourse />} />
+            <Route path="trainerdashboard" element={<TrainerDashboard />} />
           </Route>
           
           <Route element={<Admin />} path="admin">

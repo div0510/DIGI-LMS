@@ -2,8 +2,10 @@ import React from 'react';
 import { Formik } from 'formik';
 import { MDBInput } from 'mdb-react-ui-kit';
 import Swal from "sweetalert2";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate = useNavigate();
 
     const loginSubmit = async (loginData , {resetForm}) => {
         console.log(loginData);
@@ -30,7 +32,7 @@ const Login = () => {
                     confirmButtonColor: 'green'
                 }
             )
-            navigate('/home')
+            navigate('/user/profile')
         } else if (response.status === 401) {
             Swal.fire(
                 {

@@ -11,11 +11,42 @@ import {
   MDBContainer
 } from 'mdb-react-ui-kit';
 import { Formik } from 'formik';
+import app_config from '../../config';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
-  const loginSubmit = (loginData) => {
+  const url = app_config.api_url;
+  const navigate = useNavigate();
+
+  const loginSubmit = async (loginData, { resetForm }) => {
     console.log(loginData);
+    const response = await fetch(url + '/trainer/login', {
+      method: 'post',
+      body: JSON.stringify(loginData),
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+    if (response.status === 200) {
+      resetForm();
+      const trainerData = await response.json();
+      sessionStorage.setItem('trainer', JSON.stringify(trainerData));
+
+      Swal.fire(
+        {
+          title: "Success",
+          icon: "success",
+          text: "Log In Successful",
+          confirmButtonText: 'OK',
+          confirmButtonColor: 'green'
+        }
+      )
+      navigate('/main/trainerdashboard')
+    } else if(response.status === 401){
+        
+    }
   }
 
   return (
@@ -41,8 +72,8 @@ const Login = () => {
                       label='Password'
                       type='password'
                       required
-                      id='email'
-                      value={values.email}
+                      id='password'
+                      value={values.password}
                       onChange={handleChange}
                       wrapperClass='mb-4' />
 
