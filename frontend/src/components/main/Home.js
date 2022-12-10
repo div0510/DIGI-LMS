@@ -11,11 +11,18 @@ import {
   MDBBtn,
   MDBIcon
 } from 'mdb-react-ui-kit';
+import  Homeimg  from './HomeComponent/Homeimg';
+import  Home3rdsection  from './HomeComponent/Home3rdsection';
+import  Home4thsection  from './HomeComponent/Home4thsection';
+import  Home5thsection  from './HomeComponent/Home5thsection';
+import  Homefooter  from './HomeComponent/Homefooter';
 
 export default function App() {
   const [showNav, setShowNav] = useState(false);
 
   return (
+    <>
+    
     <MDBNavbar expand='lg' light bgColor='light' >
       <MDBContainer fluid style={{justifyContent:"space-between",display:"flex"}}>
         <MDBNavbarBrand href='#'>DIGI-LMS</MDBNavbarBrand>
@@ -48,5 +55,12 @@ export default function App() {
         </MDBCollapse>
       </MDBContainer>
     </MDBNavbar>
+    <Homeimg/>
+    <Home3rdsection />
+    <Home4thsection/>
+    <Home5thsection/>
+    <Homefooter/>
+    </>
+
   );
 }
