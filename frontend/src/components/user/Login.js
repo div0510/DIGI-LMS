@@ -125,7 +125,7 @@ const Login = () => {
                                             to='../userregister'
                                             role="button"
                                         >
-                                            <i class="fas fa-user-plus"></i>
+                                            <i class="fas fa-user-plus me-2"></i>
                                             Register ??
                                         </NavLink>
                                         <a
