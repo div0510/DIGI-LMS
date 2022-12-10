@@ -6,8 +6,12 @@
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
     "@fortawesome/fontawesome-free": "^6.2.1",
+<<<<<<< HEAD
     "@mui/base": "^5.0.0-alpha.109",
     "@mui/material": "^5.10.15",
+=======
+    "@mui/material": "^5.10.17",
+>>>>>>> f67e4de40d47582be4d5d8c51d766ecdb327156c
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
