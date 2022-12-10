@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 import app_config from '../../config';
 import Swal from "sweetalert2";
+import UserHeader from './UserHeader';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -48,6 +49,7 @@ const Register = () => {
 
     return (
         <>
+        <UserHeader/>
             <section className="vh-100" style={{ backgroundColor: "#eee" }}>
                 <div className="container h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">
@@ -85,7 +87,6 @@ const Register = () => {
                                                                     value={values.email}
                                                                     onChange={handleChange}
                                                                     required />
-
                                                             </div>
                                                         </div>
                                                         <div className="d-flex flex-row align-items-center mb-4">
@@ -143,6 +144,9 @@ const Register = () => {
                                                                 id='flexCheckDefault'
                                                                 label={`I agree all statements in ${" "}`} />
                                                             <a href="#!">Terms of service</a>
+                                                        </div>
+                                                        <div className='d-flex justify-content-center mb-5'>
+                                                            <NavLink to='../userlogin'>Login Instead ???</NavLink>
                                                         </div>
                                                         <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                                             <button type="submit" className="btn btn-primary btn-lg">

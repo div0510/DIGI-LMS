@@ -55,7 +55,7 @@ const Signup = () => {
         confirmButtonText: 'OK',
         confirmButtonColor: 'green'
       })
-        navigate('/main/login');
+        navigate('/main/trainerlogin');
     }
 
   }
