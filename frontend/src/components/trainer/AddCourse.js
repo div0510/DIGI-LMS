@@ -26,6 +26,7 @@ import { Formik } from "formik";
 import Swal from "sweetalert2";
 import app_config from "../../config";
 import { useParams } from "react-router-dom";
+import Header from "./Header";
 // import './addForm.css';
 
 const AddCourse = () => {
@@ -281,7 +282,7 @@ const AddCourse = () => {
               Add New question
             </Button> */}
                             <Button onClick={(e) => addNewLecture(sect_i)} variant="outlined">
-                                ADD NEW QUESTION
+                                ADD NEW LECTURE
                             </Button>
                         </div></div>
                 ))}
@@ -320,6 +321,8 @@ const AddCourse = () => {
     };
 
     return (
+        <>
+        <Header/>        
         <div className="col-md-8 mx-auto pt-4 w-100">
             {/* <div className="container"> */}
             <Paper square>
@@ -390,6 +393,7 @@ const AddCourse = () => {
             {/* </div> */}
             <button onClick={e => console.log(formData)}>check</button>
         </div>
+        </>
     );
 };
 

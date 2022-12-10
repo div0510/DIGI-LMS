@@ -1,15 +1,15 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import Header from './Header'
+import Header2 from './Header2'
 
 const TrainerDashboard = () => {
     return (
         <>
-        <Header/>
+        {/* <Header/> */}
+        <Header2/>
             <h1>TrainerDashboard</h1>
-            <NavLink to='../addcourse'>
-                <button type='button'> Add Courses</button>
-            </NavLink>
+            
         </>
 
 

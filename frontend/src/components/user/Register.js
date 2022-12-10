@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { MDBInput, MDBCheckbox } from 'mdb-react-ui-kit';
 import app_config from '../../config';
 import Swal from "sweetalert2";
+import UserHeader from './UserHeader';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -48,6 +49,7 @@ const Register = () => {
 
     return (
         <>
+        <UserHeader/>
             <section className="vh-100" style={{ backgroundColor: "#eee" }}>
                 <div className="container h-100">
                     <div className="row d-flex justify-content-center align-items-center h-100">

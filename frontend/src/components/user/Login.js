@@ -2,12 +2,13 @@ import React from 'react';
 import { Formik } from 'formik';
 import { MDBInput } from 'mdb-react-ui-kit';
 import Swal from "sweetalert2";
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import UserHeader from './UserHeader';
 
 const Login = () => {
     const navigate = useNavigate();
 
-    const loginSubmit = async (loginData , {resetForm}) => {
+    const loginSubmit = async (loginData, { resetForm }) => {
         console.log(loginData);
         const response = await fetch('http://localhost:5000/user/login', {
             method: 'post',
@@ -16,12 +17,14 @@ const Login = () => {
                 'Content-Type': 'application/json'
             }
         })
-        
+
         console.log(response.status);
         if (response.status === 200) {
             resetForm();
             const userData = await response.json();
+            
             sessionStorage.setItem('user', JSON.stringify(userData));
+            
             console.log('Login Successfull');
             Swal.fire(
                 {
@@ -41,7 +44,7 @@ const Login = () => {
                     text: "Someone Anonymous",
                     confirmButtonText: 'OK',
                     confirmButtonColor: 'red',
-                    footer: `<a href='../userregister'>Want to register?</a>`
+                    footer: `<a href='../user/register'>Want to register?</a>`
 
                 }
             )
@@ -53,6 +56,7 @@ const Login = () => {
 
     return (
         <>
+            <UserHeader />
             <section className="vh-100">
                 <div className="container py-5 h-100">
                     <div className="row d-flex align-items-center justify-content-center h-100">
@@ -115,15 +119,15 @@ const Login = () => {
                                         <div className="divider d-flex align-items-center my-4">
                                             <p className="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
                                         </div>
-                                        <a
+                                        <NavLink
                                             className="btn btn-primary btn-lg btn-block"
                                             style={{ backgroundColor: "#3b5998" }}
-                                            href="#!"
+                                            to='../userregister'
                                             role="button"
                                         >
-                                            <i className="fab fa-facebook-f me-2" />
-                                            Continue with Facebook
-                                        </a>
+                                            <i class="fas fa-user-plus"></i>
+                                            Register ??
+                                        </NavLink>
                                         <a
                                             className="btn btn-success btn-lg btn-block"
                                             style={{ backgroundColor: "#55acee" }}
