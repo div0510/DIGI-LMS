@@ -61,7 +61,7 @@ const UserHeader = () => {
                                 </NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to='../dashboard' className="nav-link" >
+                                <NavLink to='../userdashboard' className="nav-link" >
                                     User Dashboard
                                 </NavLink>
                             </li>
