@@ -17,6 +17,7 @@ import  Home3rdsection  from './HomeComponent/Home3rdsection';
 import  Home4thsection  from './HomeComponent/Home4thsection';
 import  Home5thsection  from './HomeComponent/Home5thsection';
 import  Homefooter  from './HomeComponent/Homefooter';
+import Button from './HomeComponent/Button';
 
 export default function App() {
   const [showNav, setShowNav] = useState(false);
@@ -57,6 +58,7 @@ export default function App() {
       </MDBContainer>
     </MDBNavbar>
     <Homeimg/>
+    <Button/>
     <Home3rdsection />
     <Home4thsection/>
     <Home5thsection/>
