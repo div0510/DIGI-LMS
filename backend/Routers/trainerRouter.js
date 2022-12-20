@@ -22,10 +22,14 @@ router.post('/register',(req,res)=>{
 
 router.post('/login',(req,res)=>{
     console.log(req.body);
-    trainerModel.findOne()
+    trainerModel.findOne({email: req.body.email, password: req.body.password})
     .then((result) => {
         console.log(result);
-        res.json(result);
+        if(result){
+            res.status(200).json(result);
+        } else {
+            res.status(401).json(result);
+        }
     }).catch((err) => {
         console.log(err);
         res.json(err);

@@ -99,7 +99,7 @@ const Header = () => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <NavLink to='../addcourse' className="nav-link" >
+                  <NavLink to='../../trainer/addcourse' className="nav-link" >
                     Add Course
                   </NavLink>
                 </li>

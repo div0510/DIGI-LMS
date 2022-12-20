@@ -21,8 +21,13 @@ router.post('/login',(req,res)=>{
     userModel.findOne({email:req.body.email,passwordCopy:req.body.password})
     .then((result) => {
         console.log(result);
-        res.status(200).json(result);
-    }).catch((err) => {
+        if(result){
+            res.status(200).json(result);
+        } else {
+            res.status(401).json(result);
+        }
+    })
+    .catch((err) => {
         console.log(err);
         res.json(err);
     });
