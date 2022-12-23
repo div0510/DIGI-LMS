@@ -3,8 +3,15 @@ import { Formik } from 'formik';
 import {
   MDBInput,
   MDBCheckbox,
-  MDBBtn
+  MDBBtn,
+  MDBRadio,
+  MDBCard,
+  MDBCardBody,
+  MDBCardTitle,
+  MDBCardText,
+  MDBContainer
 } from 'mdb-react-ui-kit';
+
 const Signup = () => {
 
   const signUpSubmit = (signUpData) => {
@@ -15,23 +22,35 @@ const Signup = () => {
   return (
     <>
       <div className="container">
-        <div className="card">
-          <form action="">
-            <MDBInput type='text' id='fullname' wrapperClass='mb-4' label='Full Name' />
-            <MDBInput type='text' id='username' wrapperClass='mb-4' label='Username' />
-            <MDBInput type='email' id='email' wrapperClass='mb-4' label='Email address' />
-            <MDBInput type='password' id='password' wrapperClass='mb-4' label='Password' />
-            {/* <MDBInput type='password' id='passwordCopy' wrapperClass='mb-4' label='Repeat Password' /> */}
-            <MDBInput id='form4Example1' wrapperClass='mb-4' label='Name' />
-            <MDBInput id='form4Example1' wrapperClass='mb-4' label='Name' />
-            <MDBInput wrapperClass='mb-4' textarea id='form4Example3' rows={4} label='Message' />
+        <MDBCard>
+          <MDBCardBody>
+            <MDBCardTitle className='text-center p-4' >Trainer Registration</MDBCardTitle>
+            <MDBCardText>
+              <Formik initialValues={{ fullname: '', username: '', email: '', password: '', experience: '', isAdmin: '' }} onSubmit={signUpSubmit}>
 
-            <MDBCheckbox
-              wrapperClass='d-flex justify-content-center mb-4'
-              id='form4Example4'
-              label='Send me a copy of this message'
-              defaultChecked
-            />
+                {({ values, handleSubmit, handleChange }) => {
+                  return <form onSubmit={handleSubmit}>
+                    <MDBInput type='text' id='fullname' required value={values.fullname} onChange={handleChange} wrapperClass='mb-4' label='Full Name' />
+                    <MDBInput type='text' id='username' required value={values.username} onChange={handleChange} wrapperClass='mb-4' label='Username' />
+                    <MDBInput type='email' id='email' required value={values.email} onChange={handleChange} wrapperClass='mb-4' label='Email address' />
+                    <MDBInput type='password' id='password' required value={values.password} onChange={handleChange} wrapperClass='mb-4' label='Password' />
+                    {/* <MDBInput type='password' id='passwordCopy' wrapperClass='mb-4' label='Repeat Password' /> */}
+                    <MDBInput type='number' id='experience' value={values.experience} onChange={handleChange} wrapperClass='mb-4' label='Experience' />
+
+                    <MDBContainer breakpoint="sm" className='d-inline-flex align-items-center justify-content-center p-4'>
+                      <MDBCardText className="text-start px-3 fs-3 m-0 fw-bold">is Admin ?</MDBCardText>
+                      <MDBCard className='d-flex align-items-center fw-bolder  px-4'>
+                        <MDBRadio name='isAdmin' value={values.isAdmin = 'true'} onChange={handleChange} aria-label='YES' inline label='YES' />
+                        <MDBRadio name='isAdmin' value={values.isAdmin = 'false'} onChange={handleChange} aria-label='NO' inline label='NO'  />
+                      </MDBCard>
+                    </MDBContainer>
+
+                    <MDBCheckbox
+                      wrapperClass='d-flex justify-content-center mb-4'
+                      id='form4Example4'
+                      label='Send me a copy of this message'
+                      defaultChecked
+                    />
 
                     {/* <MDBBtn type='submit' className='mb-4' block>
                       Sign Up
