@@ -11,12 +11,14 @@ import Home from './components/main/Home';
 import Register from './components/user/Register';
 import UserLogin from './components/user/Login';
 import AddCourse from './components/trainer/AddCourse';
-import TrainerDashboard from './components/main/TrainerDashboard';
+import TrainerDashboard from './components/trainer/TrainerDashboard';
 import UserDashboard from './components/user/UserDashboard';
 import Trainer from './components/trainer';
 import TrainerAuthorise from './TrainerAuth';
 import UserAuthorise from './UserAuth';
 import Profile from './components/trainer/Profile';
+import CourseManager from './components/trainer/CourseManager';
+import Header from './components/trainer/Header';
 
 function App() {
   return (
@@ -32,8 +34,6 @@ function App() {
             <Route path="userregister" element={<Register />} />
             <Route path="userlogin" element={<UserLogin />} />
             <Route path="home" element={<Home />} />
-
-            <Route path="trainerdashboard" element={<TrainerDashboard />} />
           </Route>
 
           <Route element={<Trainer />} path="trainer">
@@ -43,7 +43,9 @@ function App() {
               </TrainerAuthorise>
             } />
             <Route path='profile' element={<TrainerAuthorise><Profile/></TrainerAuthorise>}/>
-            <Route path="dashboard" element={<TrainerAuthorise><TrainerDashboard /></TrainerAuthorise>} />
+            <Route path="dashboard" element={<TrainerAuthorise><TrainerDashboard /></TrainerAuthorise>} />        
+            <Route path="coursemanager" element={<CourseManager/>} />        
+            <Route path="header" element={<Header/>} />        
           </Route>
 
 
@@ -54,7 +56,6 @@ function App() {
 
           <Route element={<User />} path="user">
             <Route path="profile" element={<UserAuthorise><UserProfile /></UserAuthorise>} />
-
             <Route path="dashboard" element={<UserAuthorise>< UserDashboard /></UserAuthorise>} />
           </Route>
 
