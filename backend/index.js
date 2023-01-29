@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 5000;
+const port = 5500;
 const cors = require('cors');
 const userRouter = require('./Routers/userRouter');
 const trainerRouter = require('./Routers/trainerRouter')
@@ -29,5 +29,5 @@ app.get('/',(req,res)=>{
 
 
 app.listen(port,()=>{
-    console.log('Server Listening at 5000');
+    console.log('Server Listening at 5500');
 })
